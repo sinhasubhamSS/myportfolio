@@ -6,42 +6,44 @@ import React, { useState } from 'react'
 function EmailSection() {
     const [emailSubmitted, setEmailSubmitted] = useState(false)
 
-   const handleSubmit = async (e) => {
-    e.preventDefault()
+    const handleSubmit = async (e) => {
+        e.preventDefault()
 
-    const data = {
-        email: e.target.email.value,
-        subject: e.target.subject.value,
-        message: e.target.message.value,
-    }
-
-    try {
-        const response = await fetch('/api/send', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-
-        const resData = await response.json()
-        console.log('API Response:', resData)
-
-        if (resData.message === "success"){ // ✅ Fixed this line
-            setEmailSubmitted(true)
-            alert("Message sent successfully")
-            e.target.reset() // Reset form after success
-        } else {
-            alert("Message failed to send")
-            if (resData.error) { // Only log if error exists
-                console.error(resData.error)
-            }
+        const data = {
+            email: e.target.email.value,
+            subject: e.target.subject.value,
+            message: e.target.message.value,
         }
-    } catch (err) {
-        alert("Something went wrong!")
-        console.error("Error submitting email:", err)
+
+        try {
+            const response = await fetch('/api/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+
+            const text = await response.text();
+            const resData = text ? JSON.parse(text) : {};
+
+            console.log('API Response:', resData)
+
+            if (resData.message === "success") { // ✅ Fixed this line
+                setEmailSubmitted(true)
+                alert("Message sent successfully")
+                e.target.reset() // Reset form after success
+            } else {
+                alert("Message failed to send")
+                if (resData.error) { // Only log if error exists
+                    console.error(resData.error)
+                }
+            }
+        } catch (err) {
+            alert("Something went wrong!")
+            console.error("Error submitting email:", err)
+        }
     }
-}
 
     return (
         <section className='grid md:grid-cols-2 my-12 py-24 gap-4'>
