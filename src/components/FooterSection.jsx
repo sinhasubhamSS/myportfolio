@@ -1,14 +1,17 @@
-import React from 'react'
+'use client'
+import React from 'react';
 
 function FooterSection() {
     return (
-        <footer className='footer border border-t-[#33353F] border-l-transparent'>
-            <div className='container p-12 flex justify-between'>
-                <span className=''>LOGO</span>
-                <p className="'text-slate-100" >All rights Reservd shubham sinha</p>
+        <footer className="footer border border-t-[#33353F] border-b-0 border-l-transparent border-r-transparent z-10 text-white">
+            <div className="container p-12 flex justify-between">
+                <span>LOGO</span>
+                <p className="text-slate-600">All rights reserved.</p>
             </div>
+        </footer>
 
-        </footer>)
+
+    );
 }
 
-export default FooterSection
+export default FooterSection;
