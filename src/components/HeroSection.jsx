@@ -5,7 +5,7 @@ import { TypeAnimation } from 'react-type-animation';
 import { motion } from 'framer-motion';
 function HeroSection() {
     return (
-        <section className='lg:py-16'>s
+        <section className='lg:py-16'>
             <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-x-8 ">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.5 }}
