@@ -28,7 +28,7 @@ const TAB_DATA = [
             <ul className='list-disc pl-5 space-y-2 mt-2'>
                 <li>
                     <strong>Birla Institute of Technology</strong>
-                    <p className='text-sm text-gray-300'>B.Tech in Computer Science</p>
+                    <p className='text-sm text-gray-300'>Bachelors in computer Application</p>
                 </li>
                 <li>
                     <strong>Dav Public School</strong>
