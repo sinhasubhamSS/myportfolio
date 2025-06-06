@@ -3,111 +3,125 @@
 import Image from 'next/image'
 import React, { useState, useTransition } from 'react'
 import TabButton from './TabButton'
+
 const TAB_DATA = [
     {
         title: "Skills",
         id: "skills",
         content: (
-            <ul className='list-disc pl-2'>
+            <ul className='list-disc pl-5 grid grid-cols-2 gap-2 mt-2'>
                 <li>Node.js</li>
                 <li>Express</li>
                 <li>MongoDB</li>
-                <li>Javascript</li>
+                <li>JavaScript</li>
                 <li>React</li>
                 <li>Prisma</li>
-
+                <li>Redux</li>
+                <li>Tailwind CSS</li>
             </ul>
         )
     },
     {
         title: "Education",
         id: "education",
-        content:
-            (
-                <ul className='list-disc pl-2'>
-                    <li>Birla Institute of techonology</li>
-                    <li>Dav Public School</li>
-                    <li>Don Bosco School</li>
-                </ul>
-            )
+        content: (
+            <ul className='list-disc pl-5 space-y-2 mt-2'>
+                <li>
+                    <strong>Birla Institute of Technology</strong>
+                    <p className='text-sm text-gray-300'>B.Tech in Computer Science</p>
+                </li>
+                <li>
+                    <strong>Dav Public School</strong>
+                    <p className='text-sm text-gray-300'>Higher Secondary Education</p>
+                </li>
+                <li>
+                    <strong>Don Bosco School</strong>
+                    <p className='text-sm text-gray-300'>Secondary Education</p>
+                </li>
+            </ul>
+        )
     },
     {
         title: "Certifications",
         id: "certifications",
-        content:
-            (
-                <ul className='list-disc pl-2'>
-                    <li>Fullstack MERN development</li>
-                    <li>React Development</li>
-                    <li>Data Structure And Algorithm</li>
-                    <li> Figma Design </li>
-                    <li> AWS Cloud </li>
-                </ul>
-            )
+        content: (
+            <ul className='list-disc pl-5 space-y-2 mt-2'>
+                <li>Fullstack MERN Development</li>
+                <li>Advanced React Development</li>
+                <li>Data Structures & Algorithms</li>
+                <li>Figma UI/UX Design</li>
+                <li>AWS Cloud Practitioner</li>
+            </ul>
+        )
     },
-
-
 ]
+
 function AboutSection() {
     const [tab, setTab] = useState("skills")
-    const [isPending, startTransaction] = useTransition()
-    const handleTabChange = (id) => {
+    const [isPending, startTransition] = useTransition()
 
-        setTab(id)
+    const handleTabChange = (id) => {
+        startTransition(() => {
+            setTab(id)
+        })
     };
 
     return (
-        <section className='text-white '>
-            <div className='md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 mt-5 md:items-stretch transition-all duration-500 ease-in-out'>
+        <section className='text-white py-12 px-4 sm:px-6 lg:px-8'>
+            <div className='max-w-7xl mx-auto'>
+                <h2 className='text-4xl md:text-5xl font-bold text-white mb-10 text-center'>About Me</h2>
 
-                <Image
-                    src="/aboutmeh.png"
-                    alt="shubbham about me image"
-                    className='mt-15 transition-all duration-500 ease-in-out'
-                    width={500}
-                    height={500}
-
-                />
-                <div className='  mt-4 md:mt-0 text-left flex flex-col h-full w-full'>
-                    <h2 className=' text-4xl font-bold text-white mb-4  '>About Me</h2>
-                    <p className='text-base lg:text-lg'> I'm a dedicated full-stack developer with hands-on experience in designing and building responsive, high-performance web applications. My core stack includes JavaScript, React, Redux, Node.js, Express, and MongoDB, along with proficiency in HTML, CSS, and Tailwind CSS.
-
-                        I take pride in writing clean, maintainable code and collaborating with teams to turn ideas into impactful solutions. I’m also familiar with deploying and scaling applications on platforms like AWS and Google Cloud.
-
-                        Whether it's front-end UI/UX or back-end architecture, I enjoy every part of the development process — always eager to learn and grow with every project.
-                    </p>
-                    <div className='flex flex-row justify-start mt-8'>
-                        <TabButton
-                            selectTab={() => (handleTabChange("skills"))}
-                            active={tab === "skills"}>
-                            {" "}
-                            Skills{""}
-                        </TabButton>
-                        <TabButton
-                            selectTab={() => (handleTabChange("education"))}
-                            active={tab === "education"}>
-                            {" "}
-                            Education{""}
-                        </TabButton>
-                        <TabButton
-                            selectTab={() => (handleTabChange("certifications"))}
-                            active={tab === "certifications"}>
-                            {" "}
-                            Certifications{""}
-                        </TabButton>
-
-
-                    </div>
-                    <div className='mt-8'>
-                        {
-                            TAB_DATA.find((t) => t.id === tab).content
-                        }
+                <div className='flex flex-col lg:flex-row gap-10 items-center'>
+                    {/* Image Section - Balanced for all screens */}
+                    <div className='w-full lg:w-2/5 flex justify-center'>
+                        <div className='relative w-full max-w-md aspect-square rounded-2xl overflow-hidden border-2 border-purple-500 shadow-lg shadow-purple-500/30'>
+                            <Image
+                                src="/aboutmeh.png"
+                                alt="Shubham - Full Stack Developer"
+                                fill
+                                className='object-cover'
+                                sizes="(max-width: 768px) 90vw, (max-width: 1024px) 40vw, 30vw"
+                            />
+                        </div>
                     </div>
 
+                    {/* Content Section */}
+                    <div className='w-full lg:w-3/5'>
+                        <div className='bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 md:p-8 shadow-xl'>
+                            <p className='text-lg mb-6 leading-relaxed'>
+                                I'm a dedicated full-stack developer specializing in modern web applications.
+                                With expertise in JavaScript, React, Node.js, and cloud platforms, I build
+                                responsive, high-performance solutions focused on user experience.
+                            </p>
+
+                            <div className='flex flex-wrap gap-3 mb-6'>
+                                <TabButton
+                                    selectTab={() => handleTabChange("skills")}
+                                    active={tab === "skills"}
+                                >
+                                    Skills
+                                </TabButton>
+                                <TabButton
+                                    selectTab={() => handleTabChange("education")}
+                                    active={tab === "education"}
+                                >
+                                    Education
+                                </TabButton>
+                                <TabButton
+                                    selectTab={() => handleTabChange("certifications")}
+                                    active={tab === "certifications"}
+                                >
+                                    Certifications
+                                </TabButton>
+                            </div>
+
+                            <div className='min-h-[200px] bg-gray-800/50 rounded-xl p-5 transition-all duration-300'>
+                                {TAB_DATA.find((t) => t.id === tab).content}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
-
         </section>
     )
 }

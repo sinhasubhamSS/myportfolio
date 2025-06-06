@@ -3,7 +3,7 @@
 import React, { useState, useRef } from 'react'
 import ProjectCard from './ProjectCard'
 import ProjectTag from './ProjectTag'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 
 const projectsData = [
     {
@@ -62,22 +62,40 @@ const projectsData = [
     },
 ]
 
-function ProjectSection() {
-    const [tag, setTag] = useState('All')
+function ProjectItem({ project, index }) {
     const ref = useRef(null)
     const isInView = useInView(ref, { once: true })
+
+    return (
+        <motion.li
+            ref={ref}
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{
+                duration: 0.5,
+                ease: 'easeOut',
+                delay: isInView ? index * 0.2 : 0, // Stagger delay only if in view
+            }}
+        >
+            <ProjectCard
+                title={project.title}
+                description={project.description}
+                imgUrl={project.image}
+                gitUrl={project.gitUrl}
+                previewUrl={project.previewUrl}
+            />
+        </motion.li>
+    )
+}
+
+function ProjectSection() {
+    const [tag, setTag] = useState('All')
 
     const handleTabChange = (newTag) => setTag(newTag)
 
     const filteredProjects = projectsData.filter((project) =>
         project.tag.includes(tag)
     )
-
-    const cardVariants = {
-        initial: { y: 50, opacity: 0 },
-        animate: { y: 0, opacity: 1 },
-        exit: { y: 50, opacity: 0 }
-    }
 
     return (
         <section>
@@ -95,32 +113,11 @@ function ProjectSection() {
                 ))}
             </div>
 
-            <ul
-                ref={ref}
-                className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'
-            >
-                <AnimatePresence>
-                    {filteredProjects.map((project, index) => (
-                        <motion.li
-                            key={project.id}   // use project.id, not index.id
-                            variants={cardVariants}
-                            initial="initial"
-                            animate={isInView ? "animate" : "initial"}
-                            transition={{ duration: 0.3, delay: index * 0.4 }}
-                            exit='exit'
-                        >
-                            <ProjectCard
-                                title={project.title}
-                                description={project.description}
-                                imgUrl={project.image}
-                                gitUrl={project.gitUrl}
-                                previewUrl={project.previewUrl}
-                            />
-                        </motion.li>
-                    ))}
-                </AnimatePresence>
+            <ul className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
+                {filteredProjects.map((project, index) => (
+                    <ProjectItem key={project.id} project={project} index={index} />
+                ))}
             </ul>
-
         </section>
     )
 }
