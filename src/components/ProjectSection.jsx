@@ -35,12 +35,12 @@ const projectsData = [
     },
     {
         id: 4,
-        title: 'Food Ordering Application',
-        description: 'Project 4 description',
+        title: 'Live Chat',
+        description: 'First mern project i did with websocket',
         image: '/projects/image04.png',
         tag: ['All', 'Mobile'],
         gitUrl: '/',
-        previewUrl: '/',
+        previewUrl: 'https://chatapp-lyart-three-56.vercel.app',
     },
     {
         id: 5,
