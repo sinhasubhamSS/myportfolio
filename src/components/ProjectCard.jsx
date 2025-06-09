@@ -1,7 +1,7 @@
 import React from "react";
 import { CodeBracketIcon, EyeIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import useIsMobile from "@/hooks/useIsMobile";
+import useIsMobile from "@/hooks/UseIsMobile";
 
 const ProjectCard = ({ imgUrl, title, description, gitUrl, previewUrl }) => {
     const isMobile = useIsMobile();
