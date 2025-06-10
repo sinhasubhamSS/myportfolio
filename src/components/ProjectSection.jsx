@@ -10,7 +10,7 @@ const projectsData = [
         id: 1,
         title: 'React Portfolio Website',
         description: 'Project 1 description',
-        image: '/projects/image01.webp',
+        image: '/projects/image01.webp', 
         tag: ['All', 'Web'],
         gitUrl: '/',
         previewUrl: 'https://myportfolio-sinhasubhamss-projects.vercel.app/',
@@ -98,7 +98,7 @@ function ProjectSection() {
     )
 
     return (
-        <section>
+        <section id="projects">
             <h2 className='text-center text-white text-4xl font-bold mt-4 mb-8 md:mb-12'>
                 My Projects
             </h2>

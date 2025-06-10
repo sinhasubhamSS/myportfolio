@@ -50,7 +50,7 @@ function EmailSection() {
     }
 
     return (
-        <section className='grid md:grid-cols-2 my-12 py-24 gap-4'>
+        <section id="contact" className='grid md:grid-cols-2 my-12 py-24 gap-4'>
             <div className="text-[#ADB7BE] mb-4 max-w-md">
                 <h5 className='text-xl font-bold text-white my-2'>Let's Connect</h5>
                 <p className="text-[#ADB7BE] mb-4">
@@ -59,7 +59,7 @@ function EmailSection() {
                 </p>
                 <div className='socials flex flex-row gap-2'>
                     <Link href="https://github.com">
-                        <Image src='/github.svg' alt='GitHub icon' width={30} height={30} className=''/>
+                        <Image src='/github.svg' alt='GitHub icon' width={30} height={30} className='' />
                     </Link>
                     <Link href="https://linkedin.com">
                         <Image src='/linkedin.svg' alt='LinkedIn icon' width={30} height={30} />
