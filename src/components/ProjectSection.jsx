@@ -26,12 +26,12 @@ const projectsData = [
     },
     {
         id: 3,
-        title: 'E-commerce Application',
-        description: 'Project 3 description',
+        title: ' Travelling E-commerce Application',
+        description: 'This is built with html css and javascript',
         image: '/projects/image03.jpeg',
         tag: ['All', 'Web'],
         gitUrl: '/',
-        previewUrl: '/',
+        previewUrl: 'https://travelecomshop.vercel.app/',
     },
     {
         id: 4,
@@ -44,7 +44,7 @@ const projectsData = [
     },
     {
         id: 5,
-        title: 'React Firebase Template',
+        title: 'React Appwrite Template',
         description: 'Authentication and CRUD operations',
         image: '/projects/image00.png',
         tag: ['All', 'Web'],
