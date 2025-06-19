@@ -26,7 +26,7 @@ function Navbar() {
     <nav className='fixed top-0 left-0 right-0 z-10 bg-[#121212] border border-[#33353F]' >
       <div className="flex flex-wrap items-center justify-between mx-auto  p-4 ">
         <Link href={"/"} className='text-2xl  md:text-5xl text-white font-semibold'>
-          LOGO
+        
         </Link>
         <div className='mobile-menu block md:hidden'>
           {/* notnavbar open true then show for open
